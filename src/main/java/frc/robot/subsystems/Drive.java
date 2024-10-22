@@ -14,7 +14,7 @@ public class Drive extends SubsystemBase {
     private final VictorSP right = new VictorSP(4);
     private final VictorSP right1 = new VictorSP(5);
 
-    public void DrivetrainVSP() {
+    public Drive() {
         left.addFollower(left1);
         right.addFollower(right1);
 
