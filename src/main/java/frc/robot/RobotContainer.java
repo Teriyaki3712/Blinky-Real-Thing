@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Robot.RobotRunType;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.Intake.IntakeIO;
 import frc.robot.subsystems.Intake.IntakeVSP;
 
 
@@ -30,13 +32,24 @@ public class RobotContainer {
 
     /* Subsystems */
     private Drive drive = new Drive();
-    IntakeVSP intake = new IntakeVSP();
+    // IntakeVSP intake = new IntakeVSP();
+    private Intake intake;
+
 
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer(RobotRunType runtimeType) {
+        switch (runtimeType) {
+            case kReal:
+                intake = new Intake(new IntakeVSP());
+                break;
+
+            default:
+                intake = new Intake(new IntakeIO() {});
+                break;
+        }
         configureButtonBindings();
     }
 
@@ -48,8 +61,8 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         drive.setDefaultCommand(drive.teleopSwerve(driver));
-        driver.y().whileTrue(intake.intakecm());
-        driver.x().whileTrue(intake.outakecm());
+        driver.y().whileTrue(intake.intakeCMD(1));
+        driver.x().whileTrue(intake.OuttakeCMD(1));
     }
 
     /**
