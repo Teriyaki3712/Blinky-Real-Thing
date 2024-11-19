@@ -1,6 +1,8 @@
 package frc.robot.subsystems.Securemotors;
 
 import org.littletonrobotics.junction.Logger;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SecureMotors extends SubsystemBase {
@@ -22,6 +24,13 @@ public class SecureMotors extends SubsystemBase {
         io.setMotarPower(power);
     }
 
+    public Command sCMD(double power) {
+        return Commands.startEnd(() -> {
+            SetMotorPower(power);
+        }, () -> {
+            SetMotorPower(0);
+        }, this);
 
+    }
 
 }

@@ -4,7 +4,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 
-public class SecureMotorsReal {
+public class SecureMotorsReal implements SecureMotorsIO {
     private final CANSparkMax neo550 = new CANSparkMax(57, MotorType.kBrushless);
     private final TalonFX falcon500 = new TalonFX(51);
 
