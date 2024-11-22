@@ -53,9 +53,7 @@ public class RobotContainer {
 
             default:
                 intake = new Intake(new IntakeIO() {});
-                m = new SecureMotors(new SecureMotorsIO() {
-
-                });
+                m = new SecureMotors(new SecureMotorsIO() {});
                 break;
         }
         configureButtonBindings();
