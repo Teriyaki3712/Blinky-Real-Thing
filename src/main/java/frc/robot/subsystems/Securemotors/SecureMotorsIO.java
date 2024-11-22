@@ -6,6 +6,8 @@ public interface SecureMotorsIO {
     @AutoLog
     public static class SecureMotorsInputs {
         public double SecureMotarsVelocityRotPerSecond;
+        public double falcon500position;
+        public double falcon500velocity;
 
     }
 
