@@ -34,9 +34,8 @@ public class RobotContainer {
     private final SendableChooser<String> autoChooser = new SendableChooser<>();
 
     /* Subsystems */
-
     private Drive drive = new Drive();
-    private SecureMotors other;
+    private SecureMotors m;
     // IntakeVSP intake = new IntakeVSP();
     private Intake intake;
 
@@ -49,12 +48,14 @@ public class RobotContainer {
         switch (runtimeType) {
             case kReal:
                 intake = new Intake(new IntakeVSP());
-                other = new SecureMotors(new SecureMotorsReal());
+                m = new SecureMotors(new SecureMotorsReal());
                 break;
 
             default:
                 intake = new Intake(new IntakeIO() {});
-                other = new SecureMotors(new SecureMotorsIO() {});
+                m = new SecureMotors(new SecureMotorsIO() {
+
+                });
                 break;
         }
         configureButtonBindings();
@@ -69,8 +70,8 @@ public class RobotContainer {
     private void configureButtonBindings() {
         drive.setDefaultCommand(drive.teleopSwerve(driver));
         driver.y().whileTrue(intake.intakeCMD(1));
-        // driver.x().whileTrue(intake.OuttakeCMD(1));
-        driver.a().whileFalse(other.sCMD(1));
+        driver.x().whileTrue(intake.OuttakeCMD(1));
+        driver.a().whileFalse(m.sCMD(1));
     }
 
     /**

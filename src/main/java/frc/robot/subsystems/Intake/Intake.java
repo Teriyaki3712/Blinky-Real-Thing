@@ -3,6 +3,7 @@ package frc.robot.subsystems.Intake;
 import org.littletonrobotics.junction.Logger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
@@ -29,10 +30,21 @@ public class Intake extends SubsystemBase {
     }
 
     public Command intakeCMD(double power) {
-        return startEnd(() -> {
+        return Commands.startEnd(() -> {
             SetMoterPower(power);
-        }, () -> SetMoterPower(0));
+        }, () -> SetMoterPower(0), this);
     }
+
+    public Command OuttakeCMD(double power) {
+        return Commands.startEnd(() -> {
+            SetMoterPower(-power);
+        }, () -> {
+            SetMoterPower(0);
+        }, this);
+
+
+    }
+
 }
 
 
